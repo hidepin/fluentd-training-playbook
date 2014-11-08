@@ -1,3 +1,5 @@
 ---
 # file: site.yml
 - include: all.yml
+- include: server.yml
+- include: agent.yml

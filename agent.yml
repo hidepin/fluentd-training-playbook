@@ -1,0 +1,7 @@
+---
+# file: all.yml
+- hosts: agent
+  roles:
+    - apache
+    - agent
+

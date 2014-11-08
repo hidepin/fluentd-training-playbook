@@ -1,0 +1,17 @@
+---
+# file: roles/apache/tasks/main.yml
+- name: packages install
+  yum: name={{item}} state=present
+  with_items:
+    - httpd
+
+- name: httpd setting
+  template: src=httpd.conf.j2 dest=/etc/httpd/conf/httpd.conf owner=root group=root mode=0644
+  notify:
+    - restart httpd
+
+- name: httpd start
+  service: name=httpd state=started enabled=yes
+
+- name: sample url
+  template: src=index.html.j2 dest=/var/www/html/index.html owner=root group=root mode=0644

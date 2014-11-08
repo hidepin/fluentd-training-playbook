@@ -1,0 +1,14 @@
+---
+# file: roles/server/tasks/main.yml
+- name: mongodb repo setting
+  template: src=mongodb.repo.j2 dest=/etc/yum.repos.d/mongodb.repo owner=root group=root mode=0644
+
+- name: packages install
+  yum: name={{item}} state=present
+  with_items:
+    - mongodb-org
+    - http://packages.treasuredata.com/2/redhat/6/x86_64/td-agent-2.1.1-0.x86_64.rpm
+
+- name: mongodb start
+  service: name=mongod state=started enabled=yes
+
