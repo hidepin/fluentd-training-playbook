@@ -1,4 +1,4 @@
 ---
 # file: roles/server/handlers/main.yml
-#- name: restart httpd
-#  service: name=httpd state=restarted
+- name: restart td-agent
+  service: name=td-agent state=restarted

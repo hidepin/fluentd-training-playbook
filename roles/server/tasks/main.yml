@@ -12,3 +12,9 @@
 - name: mongodb start
   service: name=mongod state=started enabled=yes
 
+- name: td-agent server settings
+  template: src=td-agent.conf.j2 dest=/etc/td-agent/td-agent.conf owner=root group=root mode=0644
+  notify: restart td-agent
+
+- name: td-agent start
+  service: name=td-agent state=started enabled=yes
