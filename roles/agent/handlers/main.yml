@@ -1,2 +1,4 @@
 ---
 # file: roles/agent/handlers/main.yml
+- name: restart td-agent
+  service: name=td-agent state=restarted

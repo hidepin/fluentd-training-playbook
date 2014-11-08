@@ -5,7 +5,7 @@
   with_items:
     - http://packages.treasuredata.com/2/redhat/6/x86_64/td-agent-2.1.1-0.x86_64.rpm
 
-#- name: td-agent server settings
+#- name: td-agent agent settings
 #  template: src=td-agent.conf.j2 dest=/etc/td-agent/td-agent.conf owner=root group=root mode=0644
 #
 #- name: td-agent start
