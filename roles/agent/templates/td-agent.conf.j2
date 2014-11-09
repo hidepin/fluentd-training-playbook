@@ -103,11 +103,11 @@
 
 <source>
   type tail
-  format /^(?<host>[^ ]*) [^ ]* [^ ]* [^ ]* \[(?<time>[^\]]*)\] "(?<method>\S+)(?: +(?<path>[^ ]*) +\S*)?" (?<code>[^ ]*) (?<size>[^ ]*) (?<restime>[^ ]*)(?: "(?<referer>[^\"]*)" "(?<agent>[^\"]*)")?$/
+  format /^(?<host>[^ ]*) [^ ]* (?<user>[^ ]*) \[(?<time>[^\]]*)\] "(?<method>\S+)(?: +(?<path>[^ ]*) +\S*)?" (?<code>[^ ]*) (?<size>[^ ]*)(?: "(?<referer>[^\"]*)" "(?<agent>[^\"]*)")?$/
   time_format %d/%b/%Y:%H:%M:%S %z
   pos_file /var/log/td-agent/httpd-access_log.pos
   path /var/log/httpd/access_log
-  tag access.{{ansible_fqdn}}
+  tag access.{{ansible_hostname}}
 </source>
 
 <source>
@@ -116,10 +116,10 @@
   time_format %b %d %H:%M:%S %Y
   pos_file /var/log/td-agent/httpd-error_log.pos
   path /var/log/httpd/error_log
-  tag error.{{ansible_fqdn}}
+  tag error.{{ansible_hostname}}
 </source>
 
-<match *.{{ansible_fqdn}}>
+<match *.{{ansible_hostname}}>
   type forward
   flush_interval 3s
   <server>

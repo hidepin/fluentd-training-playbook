@@ -7,6 +7,11 @@
 
 - name: td-agent agent settings
   template: src=td-agent.conf.j2 dest=/etc/td-agent/td-agent.conf owner=root group=root mode=0644
+  notify: restart td-agent
+
+- name: td-agent user settings
+  template: src=etc_sysconfig_td-agent.j2 dest=/etc/sysconfig/td-agent owner=root group=root mode=0644
+  notify: restart td-agent
 
 - name: td-agent start
   service: name=td-agent state=started enabled=yes
